@@ -1,0 +1,56 @@
+/* Estilo para o conteúdo da página inicial */
+.home-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 80px); /* Altura total da tela menos a barra de navegação */
+    padding: 20px;
+    box-sizing: border-box;
+    text-align: center;
+}
+
+/* Contêiner das opções */
+.options-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px; /* Espaço entre as caixas */
+    margin-top: 30px;
+}
+
+/* Estilo das caixas de opções */
+.option-box {
+    width: 200px;
+    height: 100px;
+    background-color: #2196f3; /* Azul Letrus */
+    border-radius: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra sutil */
+    transition: transform 0.3s, box-shadow 0.3s; /* Animação ao passar o mouse */
+}
+
+/* Efeito ao passar o mouse sobre as caixas */
+.option-box:hover {
+    transform: translateY(-5px); /* Eleva a caixa */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15); /* Sombra mais forte */
+}
+
+/* Estilo dos links dentro das caixas */
+.option-link {
+    color: white;
+    font-size: 18px;
+    font-weight: bold;
+    text-decoration: none; /* Remove o sublinhado */
+    text-align: center;
+}
+
+/* Responsividade para telas menores */
+@media (max-width: 768px) {
+    .option-box {
+        width: 100%; /* Ocupa toda a largura disponível */
+        max-width: 300px; /* Limita a largura */
+    }
+}
