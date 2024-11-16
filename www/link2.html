@@ -1,59 +1,97 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 
 <head>
-    <!-- Required meta tags-->
+    <!-- Required meta tags -->
     <meta charset="utf-8">
-    <meta name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
     <meta name="apple-mobile-web-app-capable" content="yes">
-    <!-- Color theme for statusbar (Android only) -->
     <meta name="theme-color" content="#2196f3">
-    <!-- Your app title -->
-    <title>My App</title>
-    <!-- Path to Framework7 Library Bundle CSS -->
+    <title>Configurações</title>
+    <!-- Framework7 Library CSS -->
     <link rel="stylesheet" href="lib/framework7-bundle.min.css">
-    <!-- CSS PERSONALIZADO PARA MENU-->
-    <link rel="stylesheet" href="css/personalizado.css">
-    <!--Ícones Material Design-->
+    <!-- CSS Personalizado -->
+    <link rel="stylesheet" href="css/config.css">
+    <!-- Material Design Icons -->
     <link rel="stylesheet" href="css/materialdesignicons.min.css">
-
-
 </head>
 
 <body>
     <!-- App root element -->
     <div id="app">
-
-        <!-- Your main view, should have "view-main" class -->
+        <!-- Main view -->
         <div class="view view-main">
-            <!-- Initial Page, "data-name" contains page name -->
+            <!-- Configurations Page -->
             <div data-name="link2" class="page">
-
                 <!-- Top Navbar -->
                 <div class="navbar">
                     <div class="navbar-bg"></div>
                     <div class="navbar-inner justify-content-center">
-                        <div class="title ">Configurações   </div>
+                        <div class="title">Configurações</div>
                     </div>
                 </div>
 
-                <!-- Scrollable page content -->
-                <div class="page-content">
+                <!-- Page Content -->
+                <div class="page-content page-container">
                     <div class="block">
-                        Conteúdo do link 2
+                        <form id="settings-form">
+                            <!-- Tipo de Áudio -->
+                            <div class="settings-option">
+                                <label class="settings-label" for="audio-type">Tipo de Áudio</label>
+                                <select id="audio-type" class="settings-select">
+                                    <option value="stereo">Estéreo</option>
+                                    <option value="mono">Mono</option>
+                                </select>
+                            </div>
+
+                            <!-- Fonte da Letra -->
+                            <div class="settings-option">
+                                <label class="settings-label" for="font-family">Fonte da Letra</label>
+                                <select id="font-family" class="settings-select">
+                                    <option value="Arial">Arial</option>
+                                    <option value="Verdana">Verdana</option>
+                                    <option value="Tahoma">Tahoma</option>
+                                    <option value="Courier New">Courier New</option>
+                                </select>
+                            </div>
+
+                            <!-- Tamanho da Letra -->
+                            <div class="settings-option">
+                                <label class="settings-label">Tamanho da Letra</label>
+                                <input type="number" id="font-size" class="settings-input" placeholder="Digite o tamanho (10-36)" min="10" max="36">
+                            </div>
+
+                            <!-- Salvar Configurações -->
+                            <button type="button" class="button" onclick="saveSettings()">Salvar Configurações</button>
+                        </form>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-    <!-- Path to Framework7 Library Bundle JS-->
+
+    <!-- Framework7 Library JS -->
     <script type="text/javascript" src="lib/framework7-bundle.min.js"></script>
-	<!-- jQuery -->
-	<script type="text/javascript" src="lib/jquery-3.7.0.min.js"></script>	
-    <!-- Roteamento do app-->
+    <!-- jQuery -->
+    <script type="text/javascript" src="lib/jquery-3.7.0.min.js"></script>
+    <!-- Rotas -->
     <script type="text/javascript" src="js/routes.js"></script>
     <script src="cordova.js"></script>
+    <script>
+        function saveSettings() {
+            const audioType = document.getElementById("audio-type").value;
+            const fontFamily = document.getElementById("font-family").value;
+            const fontSize = document.getElementById("font-size").value;
+
+            // Exemplo de ação ao salvar configurações
+            console.log("Configurações salvas:");
+            console.log("Tipo de Áudio:", audioType);
+            console.log("Fonte da Letra:", fontFamily);
+            console.log("Tamanho da Letra:", fontSize);
+
+            alert("Configurações salvas com sucesso!");
+        }
+    </script>
 </body>
 
 </html>
