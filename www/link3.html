@@ -14,10 +14,11 @@
     <!-- Path to Framework7 Library Bundle CSS -->
     <link rel="stylesheet" href="lib/framework7-bundle.min.css">
     <!-- CSS PERSONALIZADO PARA MENU-->
-    <link rel="stylesheet" href="css/personalizado.css">
+    <link rel="stylesheet" href="css/home.css">
     <!--Ícones Material Design-->
     <link rel="stylesheet" href="css/materialdesignicons.min.css">
-
+    <!-- Estilo para tela de perfil -->
+    <link rel="stylesheet" href="css/profile.css">
 
 </head>
 
@@ -40,8 +41,23 @@
 
                 <!-- Scrollable page content -->
                 <div class="page-content">
-                    <div class="block">
-                        Conteúdo do link 3
+                    <div class="block profile-container">
+                        <h2>Editar Perfil</h2>
+                        <form id="profile-form">
+                            <div class="form-group">
+                                <label for="name">Nome</label>
+                                <input type="text" id="name" placeholder="Digite seu nome">
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" placeholder="Digite seu email">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Senha</label>
+                                <input type="password" id="password" placeholder="Digite sua senha">
+                            </div>
+                            <button type="button" id="save-profile" class="btn-save">Salvar Alterações</button>
+                        </form>
                     </div>
                 </div>
             </div>
