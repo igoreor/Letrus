@@ -44,24 +44,93 @@
                     </a>
                 </div>
             </div>
-
+            <div data-name="link3" class="page">
             <!-- Initial Page Content -->
-            <div class="page-content home-content">
-                <div class="block text-center">
-                    <h2>Olá usuário, seja bem-vindo ao Letrus</h2>
-                </div>
-                <div class="options-container">
-                    <div class="option-box">
-                        <a href="/link4/" class="option-link link">Leitura Assistiva</a>
+                <div class="page-content home-content">
+                    <div class="block text-center">
+                        <h2>Olá usuário, seja bem-vindo ao Letrus</h2>
                     </div>
-                    <div class="option-box">
-                        <a href="#" class="option-link">Escrita Assistiva</a>
+                    <div class="options-container">
+                        <div class="option-box">
+                            <a href="/link4/" class="option-link link">Leitura Assistiva</a>
+                        </div>
+                        <div class="option-box">
+                            <a href="#" class="option-link">Escrita Assistiva</a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    <script>
+        // Função para exibir a pré-visualização da imagem
+        function previewImage() {
+            const fileInput = document.getElementById('imageInput');
+            const file = fileInput.files[0];
+            const imagePreview = document.getElementById('imagePreview');
 
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    imagePreview.style.display = 'block';
+                    imagePreview.src = event.target.result;
+                };
+                reader.readAsDataURL(file);
+            } else {
+                imagePreview.style.display = 'none';
+            }
+        }
+
+        // Função para enviar a imagem e realizar o OCR
+        async function uploadImage() {
+            const fileInput = document.getElementById('imageInput');
+            const file = fileInput.files[0];
+
+            if (!file) {
+                alert("Por favor, selecione uma imagem.");
+                return;
+            }
+
+            const formData = new FormData();
+            formData.append("file", file);
+
+            // Exibe o loading enquanto aguarda a resposta
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('result').textContent = ''; // Limpa o resultado anterior
+
+            try {
+                const response = await fetch('http://localhost:8090/api/ocr/detect-text', {
+                    method: 'POST',
+                    body: formData
+                });
+
+                if (!response.ok) {
+                    throw new Error('Erro ao fazer requisição OCR');
+                }
+
+                const data = await response.text();
+                document.getElementById('result').textContent = data || "Nenhum texto detectado.";
+            } catch (error) {
+                console.error(error);
+                document.getElementById('result').textContent = 'Erro ao processar a imagem.';
+            } finally {
+                document.getElementById('loading').style.display = 'none'; // Oculta o loading após a resposta
+            }
+        }
+
+        // Função para ler o texto em áudio
+        function readText() {
+            const text = document.getElementById('result').textContent;
+
+            if (text) {
+                const utterance = new SpeechSynthesisUtterance(text);
+                utterance.lang = 'pt-BR'; // Define o idioma para português do Brasil
+                window.speechSynthesis.speak(utterance);
+            } else {
+                alert("Nenhum texto para ler.");
+            }
+        }
+    </script>
     <!-- Path to Framework7 Library Bundle JS-->
     <script type="text/javascript" src="lib/framework7-bundle.min.js"></script>
     <!-- jQuery -->
