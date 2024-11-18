@@ -18,8 +18,8 @@ var app = new Framework7({
   // Add default routes
   routes: [
     {
-      path: "/home/",
-      url: "home.html",
+      path: "/index/",
+      url: "index.html",
       animate: false,
       on: {
         pageBeforeIn: function (event, page) {
@@ -92,13 +92,32 @@ var app = new Framework7({
           console.log("Page /Ocr/ is being removed from DOM");
         },
       },
-    }    
+    },
+    {
+      path: "/link5/",
+      url: "link5.html",
+      animate: false,
+      on: {
+        pageBeforeIn: function (event, page) {
+          console.log("Page is about to be shown: /Ocr/");
+        },
+        pageAfterIn: function (event, page) {
+          console.log("Page has been shown: /Ocr/");
+        },
+        pageInit: function (event, page) {
+          console.log("Initializing /Ocr/ page");
+        },
+        pageBeforeRemove: function (event, page) {
+          console.log("Page /Ocr/ is being removed from DOM");
+        },
+      },
+    },
   ],
   // ... other parameters
 });
 
 //Para testes direto no navegador
-var mainView = app.views.create(".view-main", { url: "/home/" });
+var mainView = app.views.create(".view-main", { url: "/index/" });
 
 //EVENTO PARA SABER O ITEM DO MENU ATUAL
 app.on("routeChange", function (route) {
@@ -117,13 +136,13 @@ app.on("routeChange", function (route) {
 
 function onDeviceReady() {
   //Quando estiver rodando no celular
-  var mainView = app.views.create(".view-main", { url: "/home/" });
+  //var mainView = app.views.create(".view-main", { url: "/home/" });
 
   //COMANDO PARA "OUVIR" O BOTAO VOLTAR NATIVO DO ANDROID
   document.addEventListener(
     "backbutton",
     function (e) {
-      if (mainView.router.currentRoute.path === "/home/") {
+      if (mainView.router.currentRoute.path === "/index/") {
         e.preventDefault();
         app.dialog.confirm("Deseja sair do aplicativo?", function () {
           navigator.app.exitApp();

@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <!-- Color theme for statusbar (Android only) -->
+    <meta name="theme-color" content="#2196f3">
+    <!-- Your app title -->
+    <title>My App</title>
+    <!-- Path to Framework7 Library Bundle CSS -->
+    <link rel="stylesheet" href="lib/framework7-bundle.min.css">
+    <!-- CSS PERSONALIZADO PARA MENU-->
+    <link rel="stylesheet" href="css/home.css">
+    <!--Ícones Material Design-->
+    <link rel="stylesheet" href="css/materialdesignicons.min.css">
+    <!-- Estilo para tela de perfil -->
+    <link rel="stylesheet" href="css/profile.css">
+    <link rel=" stylesheet" href = "css/ocr.css">
+    <link rel=" stylesheet" href = "css/link5.css">
+
+</head>
+<body>
+    <!-- App root element -->
+    <div id="app">
+        <div data-name="text-correction" class="page">
+
+            <!-- Main container -->
+            <div class="container">
+                <h2>Correção de Texto</h2>
+                <textarea class="text-input" id="textInput" placeholder="Digite seu texto aqui..."></textarea>
+                <button class="submit-button" onclick="getCorrection()">Obter Correção</button>
+
+                <!-- Loading indicator -->
+                <div id="loading" class="loading">Processando...</div>
+
+                <!-- Result area -->
+                <div id="result" class="result"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Função para obter a correção de texto
+        async function getCorrection() {
+            const text = document.getElementById('textInput').value.trim();
+            const token = localStorage.getItem('token'); // Supondo que o token esteja salvo
+
+            // Exibindo "carregando" enquanto faz a requisição
+            document.getElementById('loading').style.display = 'block';
+            document.getElementById('result').textContent = '';
+
+            try {
+                const response = await fetch('http://localhost:8090/text-correction/check-grammar', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': `Bearer ${token}`,
+                        'Accept-Language': 'pt-BR'
+                    },
+                    body: JSON.stringify({ text })
+                });
+
+                const data = await response.json();
+                document.getElementById('result').textContent = data.Texto || 'Nenhuma correção necessária.';
+            } catch (error) {
+                console.error('Erro:', error);
+                document.getElementById('result').textContent = `Erro ao processar o texto: ${error.message}`;
+            } finally {
+                document.getElementById('loading').style.display = 'none';
+            }
+        }
+    </script>
+
+    <!-- Path to Framework7 Library Bundle JS (se necessário)-->
+    <script type="text/javascript" src="lib/framework7-bundle.min.js"></script>
+    <!-- jQuery -->
+    <script type="text/javascript" src="lib/jquery-3.7.0.min.js"></script>  
+    <!-- Roteamento do app-->
+    <script type="text/javascript" src="js/routes.js"></script>
+    <script src="cordova.js"></script>
+</body>
+
+</html>

@@ -16,11 +16,15 @@
     "br.com.letrus": "file:"
   },
   "devDependencies": {
-    "cordova-android": "^13.0.0"
+    "cordova-android": "^13.0.0",
+    "cordova-plugin-exitapp": "^1.0.0"
   },
   "cordova": {
     "platforms": [
       "android"
-    ]
+    ],
+    "plugins": {
+      "cordova.custom.plugins.exitapp": {}
+    }
   }
 }

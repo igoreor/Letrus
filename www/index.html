@@ -18,6 +18,7 @@
     <link rel="stylesheet" href="css/config.css">
     <link rel="stylesheet" href="css/profile.css">
     <link rel=" stylesheet" href = "css/ocr.css">
+    <link rel=" stylesheet" href = "css/link5.css">
     <!--Ícones Material Design-->
     <link rel="stylesheet" href="css/materialdesignicons.min.css">
 </head>
@@ -30,7 +31,7 @@
             <!-- TAB BAR-->
             <div class="toolbar toolbar-bottom">
                 <div class="toolbar-inner display-flex">
-                    <a href="/home/" class="tab-link link active">
+                    <a href="/index/" class="tab-link link active">
                         <i class="mdi mdi-home"></i>
                         <span>Home</span>
                     </a>
@@ -55,7 +56,7 @@
                             <a href="/link4/" class="option-link link">Leitura Assistiva</a>
                         </div>
                         <div class="option-box">
-                            <a href="#" class="option-link">Escrita Assistiva</a>
+                            <a href="/link5/" class="option-link">Escrita Assistiva</a>
                         </div>
                     </div>
                 </div>
@@ -70,7 +71,7 @@
             const imagePreview = document.getElementById('imagePreview');
 
             if (file) {
-                const reader = new FileReader();
+                const reader = new FileReader();    
                 reader.onload = function(event) {
                     imagePreview.style.display = 'block';
                     imagePreview.src = event.target.result;
@@ -137,6 +138,7 @@
     <script type="text/javascript" src="lib/jquery-3.7.0.min.js"></script>
     <!-- Roteamento do app-->
     <script type="text/javascript" src="js/routes.js"></script>
+    <script src="cordova.js"></script>
 </body>
 
 </html>
