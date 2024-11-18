@@ -13,6 +13,7 @@
   "author": "Apache Cordova Team",
   "license": "Apache-2.0",
   "dependencies": {
+    "axios": "^1.7.7",
     "br.com.letrus": "file:"
   },
   "devDependencies": {
