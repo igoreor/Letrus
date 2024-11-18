@@ -132,6 +132,38 @@
             }
         }
     </script>
+
+<script>
+    // Função para obter a correção de texto
+    async function getCorrection() {
+        const text = document.getElementById('textInput').value.trim();
+        const token = localStorage.getItem('token'); // Supondo que o token esteja salvo
+
+        // Exibindo "carregando" enquanto faz a requisição
+        document.getElementById('loading').style.display = 'block';
+        document.getElementById('result').textContent = '';
+
+        try {
+            const response = await fetch('http://localhost:8090/text-correction/check-grammar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token}`,
+                    'Accept-Language': 'pt-BR'
+                },
+                body: JSON.stringify({ text })
+            });
+
+            const data = await response.json();
+            document.getElementById('result').textContent = data.Texto || 'Nenhuma correção necessária.';
+        } catch (error) {
+            console.error('Erro:', error);
+            document.getElementById('result').textContent = `Erro ao processar o texto: ${error.message}`;
+        } finally {
+            document.getElementById('loading').style.display = 'none';
+        }
+    }
+</script>
     <!-- Path to Framework7 Library Bundle JS-->
     <script type="text/javascript" src="lib/framework7-bundle.min.js"></script>
     <!-- jQuery -->

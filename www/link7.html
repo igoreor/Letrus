@@ -51,38 +51,45 @@
     <script type="text/javascript" src="js/routes.js"></script>
     <script src="cordova.js"></script>
     <script>
-        $(document).ready(function () {
-            $('#login-form').on('submit', function (event) {
-                event.preventDefault(); // Evita o envio padrão do formulário
+       $(document).ready(function () {
+        $('#login-form').on('submit', function (event) {
+            event.preventDefault(); // Evita o envio padrão do formulário
 
-                const loginData = {
-                    email: $('#email').val(),
-                    senha: $('#password').val()
-                };
+            const loginData = {
+            email: $('#email').val(),
+            senha: $('#password').val()
+            };
 
-                $.ajax({
-                    url: '/auth/login',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify(loginData),
-                    success: function (response) {
-                        alert('Login realizado com sucesso!');
-                        // Redireciona para uma página após o login
-                        window.location.href = "/home/";
-                    },
-                    error: function (xhr) {
-                        if (xhr.status === 404) {
-                            alert('Erro: Usuário não encontrado.');
-                        } else if (xhr.status === 401) {
-                            alert('Erro: Email ou senha inválidos.');
-                        } else {
-                            alert('Erro ao realizar login.');
-                        }
-                    }
-                });
+            // Fazendo a requisição usando fetch
+            fetch('http://localhost:8090/auth/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(loginData)
+            })
+            .then(async (response) => {
+                if (response.ok) {
+                const data = await response.json(); // Se a API retornar dados no corpo da resposta
+                alert('Login realizado com sucesso!');
+                window.location.href = 'index.html';
+                } else if (response.status === 404) {
+                alert('Erro: Usuário não encontrado.');
+                } else if (response.status === 401) {
+                alert('Erro: Email ou senha inválidos.');
+                } else {
+                throw new Error('Erro ao realizar login.');
+                }
+            })
+            .catch((error) => {
+                console.error('Erro na conexão:', error.message);
+                alert('Erro ao conectar com o servidor.');
             });
         });
+        });
+
     </script>
+      
 </body>
 
 </html>

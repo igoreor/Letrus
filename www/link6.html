@@ -54,34 +54,39 @@
     <script type="text/javascript" src="js/routes.js"></script>
     <script src="cordova.js"></script>
     <script>
-        $(document).ready(function () {
-            $('#register-form').on('submit', function (event) {
+        document.addEventListener('DOMContentLoaded', function () {
+            document.getElementById('register-form').addEventListener('submit', async function (event) {
                 event.preventDefault(); // Evita o envio padrão do formulário
 
                 const userData = {
-                    nome: $('#name').val(),
-                    email: $('#email').val(),
-                    senha: $('#password').val()
+                    nome: document.getElementById('name').value,
+                    email: document.getElementById('email').value,
+                    senha: document.getElementById('password').value
                 };
 
-                $.ajax({
-                    url: '/auth/register',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data: JSON.stringify(userData),
-                    success: function (response) {
+                try {
+                    const response = await fetch('http://localhost:8090/auth/register', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
+                        body: JSON.stringify(userData)
+                    });
+
+                    if (response.ok) {
+                        const data = await response.json();
                         alert('Cadastro realizado com sucesso!');
-                    },
-                    error: function (xhr) {
-                        if (xhr.status === 409) {
-                            alert('Erro: Email já está em uso.');
-                        } else if (xhr.status === 400) {
-                            alert('Erro: Verifique os campos e tente novamente.');
-                        } else {
-                            alert('Erro ao realizar o cadastro.');
-                        }
+                    } else if (response.status === 409) {
+                        alert('Erro: Email já está em uso.');
+                    } else if (response.status === 400) {
+                        alert('Erro: Verifique os campos e tente novamente.');
+                    } else {
+                        alert('Erro ao realizar o cadastro.');
                     }
-                });
+                } catch (error) {
+                    console.error('Erro na conexão:', error);
+                    alert('Erro ao conectar com o servidor.');
+                }
             });
         });
     </script>
