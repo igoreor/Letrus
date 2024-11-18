@@ -1,0 +1,100 @@
+/* Container principal */
+.login-container {
+    width: 100%;
+    max-width: 400px; /* Limita o tamanho máximo do formulário */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Contêiner pai para centralizar */
+.page-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Faz o contêiner ocupar a altura total da tela */
+    padding: 0 20px; /* Adiciona um pequeno espaçamento nas laterais */
+    box-sizing: border-box;
+}
+
+/* Título da página */
+.login-container h2 {
+    text-align: center;
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Texto abaixo do título */
+.login-container p {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 20px;
+}
+
+/* Grupo de formulários */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Rótulos */
+.form-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* Campos de entrada */
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #2196f3;
+    outline: none;
+}
+
+/* Botão Login */
+.btn-login {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #2196f3;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn-login:hover {
+    background-color: #1976d2;
+}
+
+/* Link de registro */
+.register-link {
+    margin-top: 15px;
+    text-align: center;
+    font-size: 14px;
+}
+
+.register-link .option-link {
+    color: #2196f3;
+    text-decoration: none;
+}
+
+.register-link .option-link:hover {
+    text-decoration: underline;
+}

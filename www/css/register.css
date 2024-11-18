@@ -1,0 +1,96 @@
+/* Container principal */
+.profile-container {
+    width: 100%;
+    max-width: 400px; /* Limita o tamanho máximo do formulário */
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+/* Contêiner pai para centralizar */
+.page-content {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Faz o contêiner ocupar a altura total da tela */
+    padding: 0 20px; /* Adiciona um pequeno espaçamento nas laterais */
+    box-sizing: border-box;
+}
+
+/* Título da página */
+.profile-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    color: #333;
+}
+
+/* Grupo de formulários */
+.form-group {
+    margin-bottom: 15px;
+}
+
+/* Rótulos */
+.form-group label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* Campos de entrada */
+.form-group input {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    transition: border-color 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #2196f3;
+    outline: none;
+}
+
+/* Botão Cadastrar */
+.btn-save {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #2196f3;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    text-align: center;
+    transition: background-color 0.3s ease;
+}
+
+.btn-save:hover {
+    background-color: #1976d2;
+}
+
+/* Margem no botão */
+#register-button {
+    margin-top: 15px;
+}
+
+/* Responsividade */
+@media (max-width: 480px) {
+    .profile-container {
+        padding: 15px;
+    }
+
+    .profile-container h2 {
+        font-size: 20px;
+    }
+
+    .btn-save {
+        font-size: 14px;
+    }
+}
