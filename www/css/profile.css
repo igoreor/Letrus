@@ -13,6 +13,16 @@
     color: #333;
 }
 
+.cadastro-link {
+    color: #007bff; /* Cor do texto */
+    text-decoration: underline; /* Adiciona sublinhado */
+}
+
+.cadastro-link:hover {
+    color: #0056b3; /* Cor ao passar o mouse */
+}
+
+
 .form-group {
     margin-bottom: 15px;
 }

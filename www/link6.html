@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#2196f3">
+    <title>Cadastro</title>
+    <link rel="stylesheet" href="lib/framework7-bundle.min.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+
+<body>
+    <div id="app">
+        <div data-name="link6" class="page">
+            <div class="view view-main">
+                <div data-name="register" class="page">
+                    <div class="navbar">
+                        <div class="navbar-bg"></div>
+                        <div class="navbar-inner justify-content-center">
+                            <div class="title">Cadastro</div>
+                        </div>
+                    </div>
+                    <div class="page-content">
+                        <div class="block profile-container">
+                            <h2>Crie sua conta</h2>
+                            <form id="register-form">
+                                <div class="form-group">
+                                    <label for="name">Nome</label>
+                                    <input type="text" id="name" name="nome" placeholder="Digite seu nome" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="password">Senha</label>
+                                    <input type="password" id="password" name="senha" placeholder="Digite sua senha" required>
+                                </div>
+                                <button type="submit" id="register-button" class="btn-save">Cadastrar</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="lib/framework7-bundle.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-3.7.0.min.js"></script>
+    <script type="text/javascript" src="js/routes.js"></script>
+    <script src="cordova.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#register-form').on('submit', function (event) {
+                event.preventDefault(); // Evita o envio padrão do formulário
+
+                const userData = {
+                    nome: $('#name').val(),
+                    email: $('#email').val(),
+                    senha: $('#password').val()
+                };
+
+                $.ajax({
+                    url: '/auth/register',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(userData),
+                    success: function (response) {
+                        alert('Cadastro realizado com sucesso!');
+                    },
+                    error: function (xhr) {
+                        if (xhr.status === 409) {
+                            alert('Erro: Email já está em uso.');
+                        } else if (xhr.status === 400) {
+                            alert('Erro: Verifique os campos e tente novamente.');
+                        } else {
+                            alert('Erro ao realizar o cadastro.');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>

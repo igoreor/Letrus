@@ -112,6 +112,44 @@ var app = new Framework7({
         },
       },
     },
+    {
+    path: "/link6/",
+    url: "link6.html",
+    animate: false,
+    on: {
+      pageBeforeIn: function (event, page) {
+        console.log("Page is about to be shown: /Ocr/");
+      },
+      pageAfterIn: function (event, page) {
+        console.log("Page has been shown: /Ocr/");
+      },
+      pageInit: function (event, page) {
+        console.log("Initializing /Ocr/ page");
+      },
+      pageBeforeRemove: function (event, page) {
+        console.log("Page /Ocr/ is being removed from DOM");
+      },
+    },
+  },
+  {
+    path: "/link7/",
+    url: "link7.html",
+    animate: false,
+    on: {
+      pageBeforeIn: function (event, page) {
+        console.log("Page is about to be shown: /Ocr/");
+      },
+      pageAfterIn: function (event, page) {
+        console.log("Page has been shown: /Ocr/");
+      },
+      pageInit: function (event, page) {
+        console.log("Initializing /Ocr/ page");
+      },
+      pageBeforeRemove: function (event, page) {
+        console.log("Page /Ocr/ is being removed from DOM");
+      },
+    },
+  },
   ],
   // ... other parameters
 });
