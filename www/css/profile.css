@@ -13,6 +13,56 @@
     color: #333;
 }
 
+.cadastro-link {
+    color: #007bff; /* Cor do texto */
+    text-decoration: underline; /* Adiciona sublinhado */
+}
+
+.cadastro-link:hover {
+    color: #0056b3; /* Cor ao passar o mouse */
+}
+
+.redirect-container {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.redirect-login{
+    text-align: center;
+    margin-top: 0px;
+    margin-bottom: 15px;
+    margin-right: 15px;
+}
+
+.no-account-question {
+    font-size: 16px;
+    color: #666;
+    margin-bottom: 10px;
+    font-family: 'Arial', sans-serif;
+}
+
+.cadastro-save {
+    background-color: #007bff; /* Vermelho vibrante */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 16px;
+    font-family: 'Arial', sans-serif;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.cadastro-save:hover {
+    background-color: #007bff; /* Vermelho mais escuro */
+    transform: scale(1.05);
+}
+
+.cadastro-save:active {
+    background-color: #007bff; /* Vermelho ainda mais escuro */
+    transform: scale(0.95);
+}
+
 .form-group {
     margin-bottom: 15px;
 }

@@ -45,9 +45,7 @@
 
     <script>
         // Função para obter a correção de texto
-        async function getCorrection() {
-            const text = document.getElementById('textInput').value.trim();
-            const token = localStorage.getItem('token'); // Supondo que o token esteja salvo
+        async function getCorrection() { // Supondo que o token esteja salvo
 
             // Exibindo "carregando" enquanto faz a requisição
             document.getElementById('loading').style.display = 'block';

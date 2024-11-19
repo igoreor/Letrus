@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="theme-color" content="#2196f3">
+    <title>Registro</title>
+    <link rel="stylesheet" href="lib/framework7-bundle.min.css">
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="css/profile.css">
+</head>
+
+<body>
+    <div id="app">
+        <div class="view view-main">
+            <div data-name="register" class="page">
+                <div class="navbar">
+                    <div class="navbar-bg"></div>
+                    <div class="navbar-inner justify-content-center">
+                        <div class="title">Registrar</div>
+                    </div>
+                </div>
+                <div class="page-content">
+                    <div class="block profile-container">
+                        <h2>Crie sua conta</h2>
+                        <form id="register-form">
+                            <div class="form-group">
+                                <label for="name">Nome</label>
+                                <input type="text" id="name" name="nome" placeholder="Digite seu nome completo" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="email">Email</label>
+                                <input type="email" id="email" name="email" placeholder="Digite seu email" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Senha</label>
+                                <input type="password" id="password" name="senha" placeholder="Digite sua senha" required>
+                            </div>
+                            <button type="submit" id="register-button" class="btn-save">Registrar</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript" src="lib/framework7-bundle.min.js"></script>
+    <script type="text/javascript" src="lib/jquery-3.7.0.min.js"></script>
+    <script type="text/javascript" src="js/routes.js"></script>
+    <script src="cordova.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('#register-form').on('submit', function (event) {
+                event.preventDefault(); // Evita o envio padrão do formulário
+
+                const registerData = {
+                    nome: $('#name').val(),
+                    email: $('#email').val(),
+                    senha: $('#password').val()
+                };
+
+                // Fazendo a requisição usando fetch
+                fetch('http://localhost:8090/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(registerData)
+                })
+                .then(async (response) => {
+                    if (response.ok) {
+                        alert('Usuário registrado com sucesso!');
+                        window.location.href = 'link7.html'; // Redireciona para a página de login
+                    } else if (response.status === 409) {
+                        alert('Erro: Email já está em uso.');
+                    } else if (response.status === 400) {
+                        alert('Erro: Dados inválidos ou incompletos.');
+                    } else {
+                        throw new Error('Erro ao registrar usuário.');
+                    }
+                })
+                .catch((error) => {
+                    console.error('Erro na conexão:', error.message);
+                    alert('Erro ao conectar com o servidor.');
+                });
+            });
+        });
+    </script>
+</body>
+
+</html>
